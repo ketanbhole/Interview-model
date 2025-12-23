@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  unsloth:
+    image: unsloth/unsloth:latest
+    container_name: unsloth
+    environment:
+      - JUPYTER_PASSWORD=1977
+      - USER_PASSWORD=unsloth
+    ports:
+      - "8888:8888"
+      - "2222:22"
+    volumes:
+      - D:/PythonProject3:/workspace
+      - D:/PythonProject3/llama-3.2-3b-4bit:/workspace/model
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    restart: unless-stopped
