@@ -35,8 +35,8 @@ CONFIG = {
     "GRADIENT_ACCUMULATION": 8, 
     "EPOCHS": 4,              
     "WARMUP_STEPS": 100,      
-    "LORA_R": 16,             
-    "LORA_ALPHA": 16,         
+    "LORA_R": 16,  #32,64           
+    "LORA_ALPHA": 16,     #32,64     
     "LORA_DROPOUT": 0.05,     
     "SEED": 3407,
 }
@@ -214,7 +214,7 @@ def main():
         logging_steps = 1,
         optim = "adamw_8bit",
         weight_decay = 0.01,
-        lr_scheduler_type = "cosine",
+        lr_scheduler_type = "cosine", #cosine_with_restarts
         seed = CONFIG["SEED"],
         dataset_num_proc = 2,
         dataloader_num_workers = 0,
@@ -267,4 +267,5 @@ def main():
         print(f" GGUF Conversion Warning: {e}")
 
 if __name__ == "__main__":
+
     main()
